@@ -12,6 +12,7 @@ void insertpos();
 void deletebeg();
 void deleteend();
 void deletepos();
+void search();
 void display();
 struct node *temp, *newnode;
 struct node *head = NULL;
@@ -20,7 +21,7 @@ int main()
     while (1)
     {
         int choice;
-        printf("enter 1.insertbeg \n  2.insertend \n 3.insertpos \n 4.deletebeg \n 5.deleteend \n 6.deletepos \n 7.display \n 8.exit");
+        printf("enter 1.insertbeg \n  2.insertend \n 3.insertpos \n 4.deletebeg \n 5.deleteend \n 6.deletepos \n 7.search \n 8.display \n 9.exit");
         scanf("%d", &choice);
         switch (choice)
         {
@@ -43,10 +44,14 @@ int main()
             deletepos();
             break;
         case 7:
-            display();
+            search();
             break;
 
         case 8:
+            display();
+            break;
+
+        case 9:
             exit(0);
             break;
         default:
@@ -140,6 +145,31 @@ void deletepos()
          
     }
     
+}
+void search()
+{
+    temp=head;
+    int key,flag=0;
+    printf("enter element to search");
+    scanf("%d",&key);
+    while(temp->next!=NULL)
+    {
+       
+        if(temp->data==key){
+            flag=1;
+            break;
+        }
+         temp=temp->next;
+    }
+    if(flag==1)
+    {
+        printf("element found ");
+    }
+    else{
+        printf("element not found ");
+    }
+    
+
 }
 void display()
 {
