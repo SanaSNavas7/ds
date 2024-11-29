@@ -63,7 +63,7 @@ int main()
 }
 void insertbeg()
 {
-    newnode = (struct node*)malloc(sizeof(struct node));
+    newnode = (struct node *)malloc(sizeof(struct node));
     printf("Enter the data to insert: ");
     scanf("%d", &newnode->data);
     if (head == NULL)
@@ -73,7 +73,8 @@ void insertbeg()
     else
     {
         temp = head;
-        while (temp->next != head){
+        while (temp->next != head)
+        {
             temp = temp->next;
         }
         temp->next = newnode;
@@ -112,17 +113,15 @@ void insertpos()
     }
     else
     {
-        for (i =1; i < pos-1; i++)
+        for (i = 1; i < pos - 1; i++)
         {
-            temp=temp->next;
-        
-           
-        
-    } newnode->next = temp->next;
-            
-    temp->next = newnode;}
+            temp = temp->next;
+        }
+        newnode->next = temp->next;
+
+        temp->next = newnode;
+    }
 }
-            
 
 void deletebeg()
 {
@@ -131,15 +130,26 @@ void deletebeg()
     {
         printf("List is empty");
     }
-    while (temp->next != head)
-    {
-        temp = temp->next;
+    else if (head->next == head)
+    
+        {
+            free(head);
+            head = NULL;
+        }
+        else
+        {
+
+            while (temp->next != head)
+            {
+                temp = temp->next;
+            }
+            temp->next = head->next;
+            
+            head = head->next;
+            free(temp);
+        }
     }
-    temp->next = head->next;
-    temp = head;
-    head = head->next;
-    free(temp);
-}
+
 
 void deleteend()
 {
@@ -148,18 +158,20 @@ void deleteend()
     {
         printf("List is empty");
     }
-    else{
-    while (temp->next->next != head)
+    else
     {
-        temp = temp->next;
+        while (temp->next->next != head)
+        {
+            temp = temp->next;
+        }
+        temp = head;
+        free(temp);
     }
-    temp->next= head;
-    free(temp);
-}}
+}
 
 void deletepos()
 {
-    temp=head;
+    temp = head;
     int pos, i;
     if (head == NULL)
     {
@@ -174,11 +186,11 @@ void deletepos()
     }
     else
     {
-        for (i = 1; i < pos-1; i++)
+        for (i = 1; i < pos - 1; i++)
         {
             temp = temp->next;
         }
-        printf("%d",temp->data);
+        printf("%d", temp->data);
         temp->next = temp->next->next;
         free(temp);
     }
@@ -188,14 +200,17 @@ void search()
 {
     int ele, flag = 0;
     temp = head;
-    if (head == NULL) {
+    if (head == NULL)
+    {
         printf("List is empty\n");
     }
     printf("Enter element to search: ");
     scanf("%d", &ele);
 
-    while (temp != head) {
-        if (temp->data == ele) {
+    while (temp != head)
+    {
+        if (temp->data == ele)
+        {
             flag = 1;
             printf("Element %d found in the list.\n", ele);
             break;
@@ -203,7 +218,8 @@ void search()
         temp = temp->next;
     }
 
-    if (!flag) {
+    if (!flag)
+    {
         printf("Element %d not found in the list.\n", ele);
     }
 }
@@ -211,17 +227,17 @@ void search()
 void display()
 {
     temp = head;
-    if (head == NULL) {
+    if (head == NULL)
+    {
         printf("List is empty\n");
-       
     }
 
     printf("The elements in the list are: ");
-    while (temp->next != head) {
+    while (temp->next != head)
+    {
         printf("%d -> ", temp->data);
         temp = temp->next;
     }
-    
+
     printf("%d\n", temp->data);
 }
-
