@@ -4,9 +4,10 @@
 void insert();
 void delete();
 void inorder_succ();
-void inorder(struct node *root);
-void preorder(struct node *root);
-void postorder(struct node *root);
+void inorder();
+void preorder();
+void postorder();
+void display();
 
 struct node
 {
@@ -16,12 +17,13 @@ struct node
 
 struct node *root = NULL;
 struct node *newnode;
-
-void main()
+int d;
+int main()
 {
     while (1)
     {
         int choice;
+        printf("Enter 1.insert()")
         printf("enter choice");
         scanf("%d", &choice);
         switch (choice)
@@ -38,7 +40,7 @@ void main()
         case 4:
             exit(0);
         default:
-            print("invalid");
+            printf("invalid");
         }
     }
     return 0;
@@ -99,7 +101,7 @@ void inorder_succ()
         current = current->right;
     }
     d = parent->left->data;
-    return d;
+    
 }
 
 void delete()
@@ -140,8 +142,8 @@ void delete()
             }
 
             if (current->left != NULL && current->right != NULL)
-            {
-                current->data = inorder_succ();
+            {inorder_succ();
+                current->data = d;
                 current->left = NULL;
             }
         }
@@ -164,9 +166,13 @@ void delete()
     }
     void display()
     {
-        struct node *start = root;
+inorder();
+postorder();
+preorder();
+    }
         void inorder()
         {
+            
             if (root == NULL)
             {
                 printf("empty");
@@ -206,5 +212,4 @@ void delete()
                 printf("%d ", root->data);
             }
         }
-    }
-}
+    
