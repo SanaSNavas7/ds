@@ -23,7 +23,7 @@ void main()
     while (1)
     {
         int choice;
-        printf("Enter\n 1. to display\n 2.to insert\n 3 to delete\n 4. search \n 5 to exit\n ");
+        printf("___Enter___\n 1.display\n 2.insert\n 3 to delete\n 4. search \n 5 .exit\n ");
         scanf("%d", &choice);
         switch (choice)
         {
@@ -37,11 +37,13 @@ void main()
             delete ();
             break;
         case 4:
-            return;
+            search();
+            break;
         case 5:
             exit(0);
         default:
-            break;
+            printf("invalid choice");
+            
         }
     }
 }
@@ -85,7 +87,6 @@ struct node *deletion(struct node *root, int value)
     if (root == NULL)
     {
         printf("Tree is empty");
-        
     }
     if (value < root->data)
     {
@@ -112,7 +113,7 @@ struct node *deletion(struct node *root, int value)
         else
         {
             root->data = find_min(root->right)->data;
-    
+
             root->right = deletion(root->right, root->data);
         }
     }
@@ -122,7 +123,7 @@ void delete()
     int value;
     printf("enter data to delete :");
     scanf("%d", &value);
-    root=deletion (root, value);
+    root = deletion(root, value);
     display();
 }
 
@@ -142,7 +143,7 @@ void inorder(struct node *root)
 {
     if (root == NULL)
     {
-        
+
         return;
     }
     else
@@ -156,7 +157,7 @@ void preorder(struct node *root)
 {
     if (root == NULL)
     {
-       
+
         return;
     }
     else
@@ -170,7 +171,7 @@ void postorder(struct node *root)
 {
     if (root == NULL)
     {
-      
+
         return;
     }
     else
@@ -195,7 +196,7 @@ int search(struct node *root, int v)
         if (v < root->data)
         {
             temp = root->left;
-            while (v = temp->data)
+            while (v == temp->data)
             {
                 printf("elemnent found");
             }
@@ -206,7 +207,7 @@ int search(struct node *root, int v)
             if (v > root->data)
             {
                 temp = root->right;
-                while (v = temp->data)
+                while (v == temp->data)
                 {
                     printf("elemnent found");
                 }
