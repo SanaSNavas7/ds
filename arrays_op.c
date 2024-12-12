@@ -1,87 +1,104 @@
-#include <stdio.h>
-void sort(int n, int a[]);
-void deleteElement(int *n, int a[]);
-void merge(int n1, int n2, int a[], int b[], int c[]);
-int main()
-{
-int i, n, x, a[50], b[50], c[100], ch;
-do
-{
-printf("\nEnter your choice\n 1. Insert \t 2. Sort \t 3. Display \t 4. Delete \t 5.
-Merging \t 6. Exit\n");
-scanf("%d", &ch);
-switch (ch)
-{
-case 1:
-printf("Enter the no:of elements for insertion");
-scanf("%d", &n);
-printf("\nEnter the elements");
-for (i = 0; i < n; i++)
-scanf("%d", &a[i]);
-break;
-case 2:sort(n, a);
-break;
-case 3:printf("The elements are\n");
-for(i=0;i<n;i++)
-printf("%d\t", a[i]);
-break;
-case 4:deleteElement(&n, a);
-break;
-case 5:printf("\nEnter the limit for 2nd array");
-scanf("%d", &x);
-printf("\nEnter the elements for 2nd array");
-for(i=0;i<x;i++)
-scanf("%d", &b[i]);
-merge(n, x, a, b, c);
-break;
-case 6:printf("\nExiting");
-break;
-default:printf("\nWrong choice");
+int arr[30];
+int n;
+void insertion();
+void deletion();
+void search();
+void display();
+#include<stdio.h>
+#include<stdlib.h>
+void main()
+{   
+    int c,i;
+    printf("Enter the size of the array :");
+    scanf("%d",&n);
+    printf("\nEnter the elements : \n");
+    for(i=0;i<n;i++)
+    {
+        scanf("%d",&arr[i]);
+    }
+    while(1){
+    printf("\n***ARRAY OPERATIONS***\n");
+    printf("1.DISPLAY\n");
+    printf("2.INSERTION\n");
+    printf("3.DELETION\n");
+    printf("4.SEARCH\n");
+    printf("5.EXIT\n");
+    printf("Enter your choice\n");
+    scanf("%d",&c);
+    switch(c)
+    {
+        case 1:
+               display();
+               break;
+        case 2:
+                insertion();
+                break;
+        case 3:
+                deletion();
+                break;
+        case 4:
+                search();
+                break;
+        case 5:
+                exit(1);
+                break;
+        default :
+                printf("Invalid option\n");
+                break;
+     } 
+    }
 }
-} while (ch != 6);
-return 0;
-}
-void sort(int n, int a[])
+void display()
 {
-int temp, i, j;
-for(i=0;i<n;i++)
-for(j=i+1;j<n;j++)
-{
-if (a[i] > a[j])
-{
-temp = a[i];
-a[i] = a[j];
-a[j] = temp;
+    int i;
+    printf("The array elements are :\n");
+    for(i=0;i<n;i++)
+    {
+        printf("%d ",arr[i]);
+    }
 }
-}
-printf("\nAfter sorting \n");
-for(i=0;i<n;i++)
-printf("%d\t",a[i]);
-}
-void deleteElement(int *n, int a[])
+void insertion()
 {
-int i, el;
-printf("\nEnter the element for deletion");
-scanf("%d", &el);
-int found = 0;
-for(i=0;i<*n;i++)
-if (a[i] == el)
-{
-a[i] = 0;
-found = 1;
-break;
+    int x,p;
+    printf("\nEnter the position to insert : ");
+    scanf("%d",&p);
+    printf("Enter the data to be inserted : ");
+    scanf("%d",&x);
+    n=n+1;
+    for(int i=n;i>=p-1;i--)
+    {
+        arr[i+1]=arr[i];
+    }
+    arr[p-1]=x;
 }
-if (!found)
-printf("\nElement not found");
-}
-void merge(int n1, int n2, int a[], int b[], int c[])
+void deletion()
 {
-int i;
-for(i=0;i<n1;i++)
-c[i] = a[i];
-for(i=0;i<n2;i++)
-c[i+n1]=b[i];
-printf("\nAfter merging \n");
-for(i=0;i<n1+n2;i++)
-printf("%d\t", c[i]);
+    int p,x;
+    printf("\nEnter the position to delete :");
+    scanf("%d",&p);
+    x=arr[p-1];
+    printf("The deleted element is : %d",x);
+    n=n-1;
+    for(int i=p-1;i<=n;i++)
+    {
+        arr[i]=arr[i+1];
+    }
+}
+void search()
+{
+    int s,p,i,flag=0;
+    printf("The element you are searching for :");
+    scanf("%d",&s);
+    for(i=0;i<n;i++)
+    {
+        if(s==arr[i])
+        {
+            printf("The element found at position %d",i+1);
+            flag=1;
+        }
+    }
+if(flag==0)
+{
+    printf("Element not found");
+}
 }
